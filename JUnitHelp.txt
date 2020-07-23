@@ -1,0 +1,158 @@
+What is JUnit ?
+
+JUnit is a unit testing framework for Java programming language. 
+It plays a crucial role test-driven development, and is a family of unit testing frameworks 
+collectively known as xUnit.
+It is explicitly recommended for Unit Testing. 
+JUnit does not require server for testing web application, which makes the testing process fast.
+
+JThis approach is like "test a little, code a little, test a little, code a little." 
+It increases the productivity of the programmer and the stability of program code, 
+which in turn reduces the stress on the programmer and the time spent on debugging.
+
+Features of JUnit
+========================================================================
+
+JUnit is an open source framework, which is used for writing and running tests.
+
+
+Provides annotations to identify test methods.
+
+
+Provides assertions for testing expected results.
+
+
+Provides test runners for running tests.
+
+
+JUnit tests allow you to write codes faster, which increases quality.
+
+
+JUnit is elegantly simple. It is less complex and takes less time.
+
+
+JUnit tests can be run automatically and they check their own results and provide immediate feedback. 
+There's no need to manually comb through a report of test results.
+
+
+JUnit tests can be organized into test suites containing test cases and even other test suites.
+
+
+JUnit shows test progress in a bar that is green if the test is running smoothly, and it turns red when a test fails.
+=====================================================
+
+JUnit 3.x 				4.x
+extend TestCase class			no need of TestCase class 
+method test word			no need to start method name with test	
+setUp and tearDown			annotation @Before @After @BeforeClass
+					@Ignore @Test @
+
+JUnit test framework provides the following important features 3.x-
+
+Fixtures
+Test suites
+Test runners
+JUnit classes
+Fixtures
+Fixtures is a fixed state of a set of objects used as a baseline for running tests.
+The purpose of a test fixture is to ensure that there is a well-known and fixed environment in which tests are run so that results are repeatable. It includes -
+
+setUp() method, which runs before every test invocation.
+tearDown() method, which runs after every test method.
+
+Demo1:
+package com.atossyntel;
+
+import junit.framework.TestCase;
+
+public class Test1 extends TestCase{
+	protected int num1,num2;
+	protected void setUp(){
+	      num1 = 3;
+	      num2 = 3;
+	      System.out.println("in init method");
+	   }
+
+	   // test method to add two values
+	   public void Add(){
+	      double result = num1 + num2;
+	     // assertTrue(result == 7);
+	   }
+	   public void testSub()
+	   {
+		  int r=num1-num2;
+		   assertEquals(0, r);
+	   }
+	   protected void tearDown()
+	   {
+		   num1=0;
+		   num2=0;
+		   System.out.println("inside destroy");
+	   }
+}
+
+Demo 2:
+package com.atossyntel;
+
+import static org.junit.Assert.assertEquals;
+import java.util.Scanner;
+import javax.management.MXBean;
+import junit.framework.TestCase;
+public class Test2 extends TestCase{
+String cmp;
+protected void setUp()
+{
+Scanner sr=new Scanner(System.in);
+cmp=sr.next();
+}
+void testCmp()
+{
+	assertEquals("atos", cmp);
+}
+}
+
+Demo3:
+import com.atossyntel.*;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+public class TestSuit1 {
+	public static Test suite() {
+		TestSuite suite = new TestSuite(TestSuit1.class.getName());
+		//$JUnit-BEGIN$
+		suite.addTestSuite(Test1.class);
+		suite.addTestSuite(Test2.class);
+		//$JUnit-END$
+		return suite;
+	}
+
+}
+
+4.x
+@BeforeClass
+@Before 
+@After
+@AfterClass
+@Ignore
+esl
+
+
+Order of execution in JUnit 4
+====================================================
+https://howtodoinjava.com/junit/ordered-testcases-execution-in-junit-4/
+
+5.x Maven Integartion 
+@Order
+https://stackoverflow.com/questions/54947645/junits-testmethodorder-annotation-not-working/54959532
+
+https://stackoverflow.com/questions/54947645/junits-testmethodorder-annotation-not-working/54959532
+
+JUnit with Spring Boot App
+https://spring.io/guides/gs/testing-web/
+https://www.baeldung.com/spring-boot-testing
+https://www.springboottutorial.com/unit-testing-for-spring-boot-rest-services
+WebMVCTest:@WebMvcTest(value = StudentController.class): WebMvcTest annotation is used for unit testing Spring MVC application. This can be used when a test focuses only Spring MVC components. In this test, we want to launch only StudentController. 
+All other controllers and mappings will not be launched when this unit test is executed.
+
+Integration testing 
